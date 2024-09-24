@@ -1,17 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const bodyParser = require("body-parser");
-const routes_1 = require("./routes");
-const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-// applying the routes to the basepath '/api'
-app.use('/api', routes_1.default);
-const port = process.env.PORT || 3000;
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-app.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}`);
-});
+const app_1 = __importDefault(require("./app"));
+// get the port from the environment variable or use 3000
+const port = 3000;
+app_1.default.listen(port, () => console.log(`App is listening on http://localhost:${port}`));
